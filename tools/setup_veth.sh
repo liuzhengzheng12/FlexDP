@@ -1,13 +1,8 @@
 #! /bin/bash
 
-# export TEST_ROOT='/home/ubuntu/vp4-test'
-# export SWITCH_ROOT='/home/ubuntu/onos-p4-dev/onos0p4-bmv2/targets/simple_switch'
-# export SWITCH_EXE='/home/ubuntu/onos-p4-dev/onos-p4-bmv2/targets/simple_switch/simple_switch'
-
-# JSON_FILE=${TEST_ROOT}/${1}/conf.json
-
-# Remove existing name spaces
+# Remove existing name spaces and veths
 ip netns | xargs -I {} sudo ip netns delete {}
+./clear_veth.sh
 
 sudo ip link add veth1 type veth peer name veth3
 sudo ip link add veth2 type veth peer name veth4

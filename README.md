@@ -4,7 +4,7 @@ FlexDP, a modular programming architecture for P4, is proposed to provide simpli
 
 ## Framework
 
-The framework of FlexDP is decomposed into four aspects: The core of FlexDP, the runtime context for modules, the modules that implement various device features And the protocol aspect defining the supported protocol format and header parser.
+The framework of FlexDP is decomposed into four components: The core of FlexDP, the runtime context for modules, the module component that implements various device features and the protocol component defining the supported protocol format and header parser.
 
 #### Core
 The [core](src/core) defines the overall architecture of FlexDP, including the control nodes, the module inspector and the FlexDP pipeline. Notice that the core doesn't provide any data plane functions.
@@ -14,20 +14,20 @@ The [core](src/core) defines the overall architecture of FlexDP, including the c
 The runtime [context](src/context) for modules should be provided by module developers who want to expose parameters of their modules to other modules. FlexDP adopts a logical namespace and all components defined in the modules are private to the modules. So we propose the global runtime context to act as a bridge between modules. And these modules can read and write the fields defined in the context, which provides an 'unsafe' way to transmit parameters.
 
 
-#### Modules
-[Modules](src/modules) are programmed by network operators who want to create new features to improve their networks. And there is a standard ingress function (a control flow in fact) for every module. Besides developing modules from scratch, we also provide some classic modules which can be reused.
+#### Module
+[Modules](src/module) are programmed by network operators who want to create new features to improve their networks. And there is a standard ingress function (a control flow in fact) for every module. Besides developing modules from scratch, we also provide some classic modules which can be reused.
 
 #### Protocol
 
-The [protocols](src/protocol) defines the network protocol used in FlexDP.
+The [protocol](src/protocol) defines the network protocols used in FlexDP.
 
 ## Install
 
 #### Install BMv2
 
 ```bash
-$ git clone https://github.com/clickp4/behavioral-model
-$ cd <bmv2 folder>
+$ git clone https://github.com/p4lang/behavioral-model bmv2
+$ cd bmv2
 $ ./install_deps.sh
 $ ./autogen.sh
 $ ./configure
@@ -38,7 +38,7 @@ or in the FlexDP folder
 ```bash
 $ make install-bmv2
 ```
-Then you can have bmv2 in <clickp4 folder>/bmv2
+Then you can have bmv2 in <flexdp folder>/bmv2
 
 ## Tutorials
 
@@ -48,7 +48,7 @@ Please follow these steps to build run a FlexDP demo.
 
 1. Setup the virtual NICs and namespace.
 ```bash
-$ cd <clickp4 folder>
+$ cd <flexdp folder>
 $ make setup-veth
 ```
 
@@ -57,7 +57,7 @@ $ make setup-veth
 $ echo "l3_switch" >>config/modules
 $ make compile
 ```
-Then the P4 binary code "clickp4.json" is generated into the "build" folder.
+Then the P4 binary code "flexdp.json" is generated into the "build" folder.
 
 3. Run FlexDP on BMv2
 Firstly, check whether the "SWITCH_DIR" parameter in Makefile is right or change it to the right director.(TODO: This can be automatically done.) 

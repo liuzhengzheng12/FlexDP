@@ -23,10 +23,10 @@ The [protocol](src/protocol) defines the network protocols used in FlexDP.
 
 ## Install
 
-#### Install BMv2
+#### Install bmv2
 
 ```bash
-$ git clone https://github.com/p4lang/behavioral-model bmv2
+$ git clone https://github.com/p4lang/behavioral-model.git bmv2
 $ cd bmv2
 $ ./install_deps.sh
 $ ./autogen.sh
@@ -34,11 +34,30 @@ $ ./configure
 $ make -j8
 $ sudo make install
 ```
+
 or in the FlexDP folder
+
 ```bash
 $ make install-bmv2
 ```
-Then you can have bmv2 in <flexdp folder>/bmv2
+
+Then you can have bmv2 in \<FlexDP folder>/bmv2
+
+#### Install p4c-bmv2
+
+```bash
+$ git clone https://github.com/p4lang/p4c-bm.git p4c-bmv2
+$ cd p4c-bmv2
+$ sudo pip install -r requirements.txt
+$ sudo python setup.py install
+```
+or in the FlexDP folder
+
+```bash
+$ make install-p4c-bmv2
+```
+
+Then you can have p4c-bmv2 in \<FlexDP folder>/p4c-bmv2
 
 ## Tutorials
 
@@ -47,34 +66,39 @@ Then you can have bmv2 in <flexdp folder>/bmv2
 Please follow these steps to build run a FlexDP demo.
 
 1. Setup the virtual NICs and namespace.
+
 ```bash
-$ cd <flexdp folder>
+$ cd <FlexDP folder>
 $ make setup-veth
 ```
 
 2. Setup a FlexDP module and compile the FlexDP source code.
+
 ```bash
-$ echo "l3_switch" >>config/modules
+$ echo l3_switch >> config/modules
 $ make compile
 ```
 Then the P4 binary code "flexdp.json" is generated into the "build" folder.
 
 3. Run FlexDP on BMv2
 Firstly, check whether the "SWITCH_DIR" parameter in Makefile is right or change it to the right director.(TODO: This can be automatically done.) 
+
 ```bash
-make run
+$ make run
 ```
 
 4. Populate L3_switch 
+
 ```bash
-make populate-l3
+$ make populate-l3
 ```
 
 5. Test the reachability h1 and h2
+
 ```bash
 $ sudo ip netns exec h1 bash
 $ ping 10.0.0.2
-``` 
+```
 
 #### How to build a module
 

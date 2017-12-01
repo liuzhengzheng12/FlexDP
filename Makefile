@@ -359,6 +359,9 @@ clean:
 install-bmv2:
 	@bash tools/install_bmv2.sh
 
+install-p4c-bmv2:
+	@bash tools/install_p4c_bmv2.sh
+
 setup-veth:
 	@bash tools/setup_veth.sh
 

@@ -1,161 +1,138 @@
-SWITCH_DIR=./bmv2/targets/simple_switch
-SWITCH_DBG_DIR=/home/netarchlab/bmv2-debug/targets/simple_switch
-CONTROLLER_DIR=/home/netarchlab/odb/router
-CONTROLLER_IP=101.6.30.157
-CONTROLLER_PORT=40123
-INTF=-i 1@veth3 -i 2@veth4 
-LOG=-L off
-COMMANDS1=commands1
-COMMANDS=commands
+SWITCH_DIR = ./bmv2/targets/simple_switch
+INTF = -i 1@veth3 -i 2@veth4 
+LOG = -L off
 # LOG=--log-console
 
 compile:
-	@mkdir -p build >>/dev/null
+	@mkdir -p build
 	@python tools/parse_config.py
 	@p4c-bmv2 src/flexdp.p4 --json build/flexdp.json
 
 run: compile
 	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cd $(SWITCH_DIR) && sudo bash simple_switch flexdp.json $(INTF) $(LOG)
 	# -- --controller-ip=$(CONTROLLER_IP) --controller-port=$(CONTROLLER_PORT) 
 
 run-p1: 
-	@cp test/p1/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p1/module config/module
+	@make run
 
 populate-p1:
-	@cp test/p1/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p1/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 run-p2: 
-	@cp test/p2/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p2/module config/module
+	@make run
 
 populate-p2:
-	@cp test/p2/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p2/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 run-p3: 
-	@cp test/p3/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p3/module config/module
+	@make run
 
 populate-p3:
-	@cp test/p3/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p3/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 run-p4: 
-	@cp test/p4/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p4/module config/module
+	@make run
 
 populate-p4:
-	@cp test/p4/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p4/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 run-p5: 
-	@cp test/p5/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p5/module config/module
+	@make run
 
 populate-p5:
-	@cp test/p5/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p5/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 run-p6: 
-	@cp test/p6/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p6/module config/module
+	@make run
 
 populate-p6:
-	@cp test/p6/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p6/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 run-p7: 
-	@cp test/p7/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG)
+	@cp test/p7/module config/module
+	@make run
 
 populate-p7:
-	@cp test/p7/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/p7/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
+run-l3: 
+	@cp test/l3_switch/module config/module
+	@make run
 
 populate-l3:
-	@cp test/l3_switch/commands $(SWITCH_DIR)
-	@cp test/l3_switch/modules config/modules
-	@make compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
-	# -- --controller-ip=$(CONTROLLER_IP) --controller-port=$(CONTROLLER_PORT) 
-
-
+	@cp test/l3_switch/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 populate-init:
-	@cp test/l3_switch/commands-init $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands-init
+	@cp test/l3_switch/command-init $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command-init
 
 populate-plus-eth:
-	@cp test/l3_switch/commands-plus-eth $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands-plus-eth
+	@cp test/l3_switch/command-plus-eth $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-eth
 	
 populate-plus-ipv4:
-	@cp test/l3_switch/commands-plus-ipv4 $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands-plus-ipv4
+	@cp test/l3_switch/command-plus-ipv4 $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-ipv4
 
 populate-plus-tcp:
-	@cp test/l3_switch/commands-plus-tcp $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands-plus-tcp
+	@cp test/l3_switch/command-plus-tcp $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-tcp
 
 populate-plus-udp:
-	@cp test/l3_switch/commands-plus-udp $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands-plus-udp
+	@cp test/l3_switch/command-plus-udp $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-udp
 
 populate-rewind:
-	@cp test/rewinder/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/rewinder/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 populate-redundant:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR) && ./runtime_CLI < command
 
 
 run-exp1:
-	@cp test/l3_switch/commands $(SWITCH_DIR)
-	@cp test/l3_switch/modules config/modules
+	@cp test/l3_switch/command $(SWITCH_DIR)
+	@cp test/l3_switch/module config/module
 	@make compile
 	@cp build/flexdp.json $(SWITCH_DIR)
 	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
 	# -- --controller-ip=$(CONTROLLER_IP) --controller-port=$(CONTROLLER_PORT) 
 
 run-exp2:
-	@cp test/chain0/commands $(SWITCH_DIR)
-	@cp test/chain0/modules config/modules
+	@cp test/chain0/command $(SWITCH_DIR)
+	@cp test/chain0/module config/module
 	@make compile
 	@cp build/flexdp.json $(SWITCH_DIR)
 	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
 	# -- --controller-ip=$(CONTROLLER_IP) --controller-port=$(CONTROLLER_PORT) 
 
 run-exp3:
-	@cp test/chain1/commands $(SWITCH_DIR)
-	@cp test/chain1/modules config/modules
+	@cp test/chain1/command $(SWITCH_DIR)
+	@cp test/chain1/module config/module
 	@make compile
 	@cp build/flexdp.json $(SWITCH_DIR)
 	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
 	# -- --controller-ip=$(CONTROLLER_IP) --controller-port=$(CONTROLLER_PORT) 
 
 run-exp4:
-	@cp test/chain4/commands $(SWITCH_DIR)
-	@cp test/chain4/modules config/modules
+	@cp test/chain4/command $(SWITCH_DIR)
+	@cp test/chain4/module config/module
 	@make compile
 	@cp build/flexdp.json $(SWITCH_DIR)
 	@cd $(SWITCH_DIR)&&sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
@@ -190,63 +167,63 @@ run-linear8: compile
 	@cd tools&&bash linear-8.sh
 
 populate-linear2:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
 
 populate-linear3:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <command
 
 populate-linear4:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <command
 
 populate-linear5:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <command
 
 populate-linear6:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <command
 
 populate-linear7:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <command
 
 populate-linear8:
-	@cp test/redundant/commands $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9097 <commands
+	@cp test/redundant/command $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9097 <command
 
 run-fattree:
-	@cp test/fattree/modules config/modules
+	@cp test/fattree/module config/module
 	@make compile
 	@cp build/flexdp.json $(SWITCH_DIR)
 	@cp build/flexdp.json $(SWITCH_DBG_DIR)
@@ -276,81 +253,81 @@ populate-fattree:
 
 
 populate-redundant-linear1:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <$(COMMANDS)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <$(command)
 
 populate-redundant-linear2:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <$(COMMANDS)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <$(command)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
 
 populate-redundant-linear3:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <$(COMMANDS)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <$(command)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(command1)
 
 populate-redundant-linear4:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(command1)
 
 populate-redundant-linear5:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(command1)
 
 populate-redundant-linear6:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <$(command1)
 
 populate-redundant-linear7:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <$(command1)
 
 populate-redundant-linear8:
-	@cp test/linear/commands $(SWITCH_DIR)
-	@cp test/linear/$(COMMANDS1) $(SWITCH_DIR)
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <$(COMMANDS1)
-	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9097 <$(COMMANDS1)
+	@cp test/linear/command $(SWITCH_DIR)
+	@cp test/linear/$(command1) $(SWITCH_DIR)
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9091 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9092 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9093 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9094 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9095 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9096 <$(command1)
+	@cd $(SWITCH_DIR)&&./runtime_CLI --thrift-port 9097 <$(command1)
 
 
 
 populate-exp4:
-	@cd $(SWITCH_DIR)&&./runtime_CLI <commands
+	@cd $(SWITCH_DIR)&&./runtime_CLI <command
 
 list:
-	@echo "FlexDP Modules:"
-	@cat config/modules
+	@echo "FlexDP module:"
+	@cat config/module
 	@echo
 
 clean:
@@ -364,12 +341,6 @@ install-p4c-bmv2:
 
 setup-veth:
 	@bash tools/setup_veth.sh
-
-setup-peth:
-	@bash tools/setup_peth.sh
-
-clear-peth:
-	@bash tools/clear_peth.sh
 
 clear-veth:
 	@bash tools/clear_veth.sh

@@ -1,12 +1,12 @@
 import os
 
 def parse_modules():
-    config = open('config/modules', 'r')
+    config = open('config/module', 'r')
     module = open('src/core/module.p4', 'w')
     module.write('#ifndef __CLICK_MODULE__\n')
     module.write('#define __CLICK_MODULE__\n\n')
     print('Compiling modules into FlexDP:')
-    for m in config.readlines():
+    for m in config:
         m = m.strip('\n')
         if not os.path.exists('src/module/%s.p4'%(m)):
             print 'Cannot find files of %s\n'%(m)
@@ -24,7 +24,6 @@ def parse_modules():
         i = i + 1
 
     config.close()
-
     module.write('\n\n#endif\n')
     module.close()
 
@@ -35,7 +34,7 @@ def parse_context():
     context.write('#define __CLICK_CONTEXT__\n\n')
     print('Loading context:')
     i = 1
-    for m in config.readlines():
+    for m in config:
         m = m.strip('\n')
         if not os.path.exists('src/context/%s.p4'%(m)):
             print 'Cannot find files of %s\n'%(m)
@@ -58,7 +57,7 @@ def parse_protocol():
     i = 1
     start = ''
     protocols = []
-    for m in config.readlines():
+    for m in config:
         m = m.strip('\n')
         if not os.path.exists('src/protocol/%s.p4'%(m)):
             print 'Cannot find files of %s\n'%(m)

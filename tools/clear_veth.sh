@@ -1,7 +1,4 @@
 #! /bin/bash
 
-sudo ip link del veth3
-sudo ip link del veth4
-
-sudo ip netns del h1
-sudo ip netns del h2
+ip netns | xargs -I {} sudo ip netns delete {}
+ip link show up | grep -o 'veth[0-9]*'| xargs -I {} sudo ip link del {}

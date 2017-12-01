@@ -15,7 +15,7 @@ The runtime [context](src/context) for modules should be provided by module deve
 
 
 #### Module
-[Modules](src/module) are programmed by network operators who want to create new features to improve their networks. And there is a standard ingress function (a control flow in fact) for every module. Besides developing modules from scratch, we also provide some classic modules which can be reused.
+[Module](src/module) are programmed by network operators who want to create new features to improve their networks. And there is a standard ingress function (a control flow in fact) for every module. Besides developing modules from scratch, we also provide some classic modules which can be reused.
 
 #### Protocol
 
@@ -75,7 +75,7 @@ $ make setup-veth
 2. Setup a FlexDP module and compile the FlexDP source code.
 
 ```bash
-$ echo l3_switch >> config/modules
+$ echo l3_switch >> config/module
 $ make compile
 ```
 Then the P4 binary code "flexdp.json" is generated into the "build" folder.

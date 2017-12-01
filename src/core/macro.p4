@@ -43,13 +43,13 @@
 
 
 
-#define SRC_MAC ethernet.src_addr
-#define DST_MAC ethernet.dst_addr
-#define ETH_TYPE ethernet.eth_type
+#define SRC_MAC     ethernet.src_addr
+#define DST_MAC     ethernet.dst_addr
+#define ETH_TYPE    ethernet.eth_type
 
 #define IPv4_SRC_ADDR  ipv4.src_addr
 #define IPv4_DST_ADDR  ipv4.dst_addr
-// #define IPv4_PROTO     ipv4.proto
+// #define IPv4_PROTO  ipv4.proto
 
 #define IPv6_SRC_ADDR  ipv6.src_addr
 #define IPv6_DST_ADDR  ipv6.dst_addr

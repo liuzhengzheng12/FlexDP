@@ -1,8 +1,8 @@
 #ifndef __CLICK_DEFINE__
 #define __CLICK_DEFINE__
 
-#define MODULE_MASK_0 1
-#define MODULE_MASK_1 (1<<1
+#define MODULE_MASK_0 (1<<0)
+#define MODULE_MASK_1 (1<<1)
 #define MODULE_MASK_2 (1<<2）
 #define MODULE_MASK_3 (1<<3）
 #define MODULE_MASK_4 (1<<4）

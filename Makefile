@@ -1,7 +1,7 @@
-SWITCH_DIR = ./bmv2/targets/simple_switch
+SWITCH_DIR = bmv2/targets/simple_switch
 INTF = -i 1@veth3 -i 2@veth4 
-LOG = -L off
-# LOG=--log-console
+//LOG = -L off
+LOG = --log-console
 
 compile:
 	@mkdir -p build
@@ -10,8 +10,7 @@ compile:
 
 run: compile
 	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && sudo bash simple_switch flexdp.json $(INTF) $(LOG)
-	# -- --controller-ip=$(CONTROLLER_IP) --controller-port=$(CONTROLLER_PORT) 
+	@cd $(SWITCH_DIR) && sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
 
 run-p1: 
 	@cp test/p1/module config/module

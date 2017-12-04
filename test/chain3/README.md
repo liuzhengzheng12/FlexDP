@@ -1,1 +1,1 @@
-# VXLAN -> L3 switch -> simple_acl
+# chain 3: vxlan -> l3_switch -> simple_acl

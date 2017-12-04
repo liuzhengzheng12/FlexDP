@@ -1,1 +1,1 @@
-# Chain0: ACL -> L3 Switch
+#chain 0: l3_switch -> simple_acl

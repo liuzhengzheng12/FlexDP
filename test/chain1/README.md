@@ -1,1 +1,1 @@
-#Chain: simple_sg -> simple_acl -> l3_switch
+#chain 1: simple_sg -> simple_acl -> l3_switch

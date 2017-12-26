@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_INTRINSIC__
-#define __CLICK_CONTEXT_INTRINSIC__
+#ifndef __FLEXDP_CONTEXT_INTRINSIC__
+#define __FLEXDP_CONTEXT_INTRINSIC__
 header_type ingress_intrinsic_metadata_t {
     fields {
         resubmit_flag : 1;              // flag distinguishing original packets

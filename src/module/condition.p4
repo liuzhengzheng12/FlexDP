@@ -14,8 +14,8 @@
 #endif
 
 action condition_branch(state, bitmap) {
-    SET_CLICK_STATE(state);
-    SET_CLICK_BITMAP(bitmap);
+    SET_FLEXDP_STATE(state);
+    SET_FLEXDP_BITMAP(bitmap);
 }
 
 table condition_table_1 {

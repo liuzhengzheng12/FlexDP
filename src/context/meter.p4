@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_METER__
-#define __CLICK_CONTEXT_METER__
+#ifndef __FLEXDP_CONTEXT_METER__
+#define __FLEXDP_CONTEXT_METER__
 
 /*
  * Meter metadata

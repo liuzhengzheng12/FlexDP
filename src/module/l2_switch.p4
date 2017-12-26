@@ -40,8 +40,8 @@ table dmac {
         ethernet.dst_addr : exact;
     }
     actions {
-    	forward;
-    	flood;
+        forward;
+        flood;
     }
     size : L2_SWITCH_DMAC_TABLE_SIZE;
 }

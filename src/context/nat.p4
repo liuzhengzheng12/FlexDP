@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_NAT__
-#define __CLICK_CONTEXT_NAT__
+#ifndef __FLEXDP_CONTEXT_NAT__
+#define __FLEXDP_CONTEXT_NAT__
 /*
  * NAT processing
  */

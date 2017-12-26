@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_MULTICAST__
-#define __CLICK_CONTEXT_MULTICAST__
+#ifndef __FLEXDP_CONTEXT_MULTICAST__
+#define __FLEXDP_CONTEXT_MULTICAST__
 
 /*
  * Multicast processing

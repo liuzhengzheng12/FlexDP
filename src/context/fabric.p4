@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_FABRIC__
-#define __CLICK_CONTEXT_FABRIC__
+#ifndef __FLEXDP_CONTEXT_FABRIC__
+#define __FLEXDP_CONTEXT_FABRIC__
 header_type fabric_metadata_t {
     fields {
         packetType : 3;

@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT__
-#define __CLICK_CONTEXT__
+#ifndef __FLEXDP_CONTEXT__
+#define __FLEXDP_CONTEXT__
 
 #include "../context/common.p4"
 #include "../context/common_action.p4"

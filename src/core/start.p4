@@ -1,5 +1,5 @@
-#ifndef __CLICK_START__
-#define __CLICK_START__
+#ifndef __FLEXDP_START__
+#define __FLEXDP_START__
 
 #include "macro.p4"
 
@@ -43,12 +43,12 @@
 
 
 action act_set_chain(chain_id, bitmap) {
-    SET_CLICK_ID(chain_id);
-    SET_CLICK_BITMAP(bitmap);
+    SET_FLEXDP_ID(chain_id);
+    SET_FLEXDP_BITMAP(bitmap);
 }
 
 action act_set_bitmap(bitmap) {
-    SET_CLICK_BITMAP(bitmap);
+    SET_FLEXDP_BITMAP(bitmap);
 }
 
 table tbl_pipeline_start {

@@ -1,5 +1,5 @@
-#ifndef __CLICK_PROTOCOL__
-#define __CLICK_PROTOCOL__
+#ifndef __FLEXDP_PROTOCOL__
+#define __FLEXDP_PROTOCOL__
 
 #include "../protocol/udp.p4"
 #include "../protocol/tcp.p4"

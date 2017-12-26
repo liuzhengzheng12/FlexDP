@@ -111,13 +111,13 @@ table send_frame {
 #endif
 
 action if_branch(state, bitmap) {
-    SET_CLICK_STATE(state);
-    SET_CLICK_BITMAP(bitmap);
+    SET_FLEXDP_STATE(state);
+    SET_FLEXDP_BITMAP(bitmap);
 }
 
 table if_small {
     reads {
-        click_metadata.click_id : exact;
+        flexdp_metadata.flexdp_id : exact;
     }
     actions {
          if_branch;
@@ -127,7 +127,7 @@ table if_small {
 
 table if_equal {
     reads {
-        click_metadata.click_id : exact;
+        flexdp_metadata.flexdp_id : exact;
     }
     actions {
         if_branch;
@@ -137,7 +137,7 @@ table if_equal {
 
 table if_large {
     reads {
-        click_metadata.click_id : exact;
+        flexdp_metadata.flexdp_id : exact;
     }
     actions {
          if_branch;

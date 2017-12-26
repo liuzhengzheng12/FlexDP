@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_ACL__
-#define __CLICK_CONTEXT_ACL__
+#ifndef __FLEXDP_CONTEXT_ACL__
+#define __FLEXDP_CONTEXT_ACL__
 
 /*
  * ACL metadata

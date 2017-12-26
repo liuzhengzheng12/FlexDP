@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_TUNNEL__
-#define __CLICK_CONTEXT_TUNNEL__
+#ifndef __FLEXDP_CONTEXT_TUNNEL__
+#define __FLEXDP_CONTEXT_TUNNEL__
 /*
  * Tunnel metadata
  */

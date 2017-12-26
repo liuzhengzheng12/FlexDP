@@ -1,4 +1,3 @@
-SWITCH_DIR = bmv2/targets/simple_switch
 INTF = -i 1@veth3 -i 2@veth4 
 //LOG = -L off
 LOG = --log-console
@@ -9,100 +8,84 @@ compile:
 	@p4c-bmv2 src/flexdp.p4 --json build/flexdp.json
 
 run: compile
-	@cp build/flexdp.json $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && sudo bash simple_switch flexdp.json $(INTF) $(LOG) 
+	@simple_switch build/flexdp.json $(INTF) $(LOG) 
 
 run-p1: 
 	@cp test/p1/module config/module
 	@make run
 
 populate-p1:
-	@cp test/p1/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p1/command
 
 run-p2: 
 	@cp test/p2/module config/module
 	@make run
 
 populate-p2:
-	@cp test/p2/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p2/command
 
 run-p3: 
 	@cp test/p3/module config/module
 	@make run
 
 populate-p3:
-	@cp test/p3/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p3/command
 
 run-p4: 
 	@cp test/p4/module config/module
 	@make run
 
 populate-p4:
-	@cp test/p4/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p4/command
 
 run-p5: 
 	@cp test/p5/module config/module
 	@make run
 
 populate-p5:
-	@cp test/p5/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p5/command
 
 run-p6: 
 	@cp test/p6/module config/module
 	@make run
 
 populate-p6:
-	@cp test/p6/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p6/command
 
 run-p7: 
 	@cp test/p7/module config/module
 	@make run
 
 populate-p7:
-	@cp test/p7/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/p7/command
 
 run-l3: 
 	@cp test/l3_switch/module config/module
 	@make run
 
 populate-l3:
-	@cp test/l3_switch/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/l3_switch/command
 
 populate-init:
-	@cp test/l3_switch/command-init $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command-init
+	@simple_switch_CLI < test/l3_switch/command-init
 
 populate-plus-eth:
-	@cp test/l3_switch/command-plus-eth $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-eth
-	
+	@simple_switch_CLI < test/l3_switch/command-plus-eth
+
 populate-plus-ipv4:
-	@cp test/l3_switch/command-plus-ipv4 $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-ipv4
+	@simple_switch_CLI < test/l3_switch/command-plus-ipv4
 
 populate-plus-tcp:
-	@cp test/l3_switch/command-plus-tcp $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-tcp
+	@simple_switch_CLI < test/l3_switch/command-plus-tcp
 
 populate-plus-udp:
-	@cp test/l3_switch/command-plus-udp $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command-plus-udp
+	@simple_switch_CLI < test/l3_switch/command-plus-udp
 
 populate-rewind:
-	@cp test/rewinder/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/rewinder/command
 
 populate-redundant:
-	@cp test/redundant/command $(SWITCH_DIR)
-	@cd $(SWITCH_DIR) && ./runtime_CLI < command
+	@simple_switch_CLI < test/redundant/command
 
 
 run-exp1:

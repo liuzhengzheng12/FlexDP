@@ -3,8 +3,8 @@ import os
 def parse_modules():
     config = open('config/module', 'r')
     module = open('src/core/module.p4', 'w')
-    module.write('#ifndef __CLICK_MODULE__\n')
-    module.write('#define __CLICK_MODULE__\n\n')
+    module.write('#ifndef __FLEXDP_MODULE__\n')
+    module.write('#define __FLEXDP_MODULE__\n\n')
     print('Compiling modules into FlexDP:')
     for m in config:
         m = m.strip('\n')
@@ -30,8 +30,8 @@ def parse_modules():
 def parse_context():
     config = open('config/context', 'r')
     context = open('src/core/context.p4', 'w')
-    context.write('#ifndef __CLICK_CONTEXT__\n')
-    context.write('#define __CLICK_CONTEXT__\n\n')
+    context.write('#ifndef __FLEXDP_CONTEXT__\n')
+    context.write('#define __FLEXDP_CONTEXT__\n\n')
     print('Loading context:')
     i = 1
     for m in config:
@@ -50,8 +50,8 @@ def parse_context():
 def parse_protocol():
     config = open('config/protocol', 'r')
     protocol = open('src/core/protocol.p4', 'w')
-    protocol.write('#ifndef __CLICK_PROTOCOL__\n')
-    protocol.write('#define __CLICK_PROTOCOL__\n\n')
+    protocol.write('#ifndef __FLEXDP_PROTOCOL__\n')
+    protocol.write('#define __FLEXDP_PROTOCOL__\n\n')
     print('Loading protocols:')
 
     i = 1

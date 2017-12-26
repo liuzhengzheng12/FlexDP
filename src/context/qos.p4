@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_QOS__
-#define __CLICK_CONTEXT_QOS__
+#ifndef __FLEXDP_CONTEXT_QOS__
+#define __FLEXDP_CONTEXT_QOS__
 
 header_type qos_metadata_t {
     fields {

@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_INT__
-#define __CLICK_CONTEXT_INT__
+#ifndef __FLEXDP_CONTEXT_INT__
+#define __FLEXDP_CONTEXT_INT__
 /*
  * INT transit device implementation
  * This example implements INT transit functionality using VxLAN-GPE as

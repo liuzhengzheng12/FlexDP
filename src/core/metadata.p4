@@ -1,5 +1,5 @@
-#ifndef __CLICK_METADATA__
-#define __CLICK_METADATA__
+#ifndef __FLEXDP_METADATA__
+#define __FLEXDP_METADATA__
 
 /****************************************************
  * intrinsic_metadata_t
@@ -23,16 +23,16 @@ metadata intrinsic_metadata_t intrinsic_metadata;
  * Metadata.
  */
 
-header_type click_metadata_t {
+header_type flexdp_metadata_t {
     fields {
-        click_bitmap  : 16; // Supprort 64 mododules now.
-        click_id      : 16; // Chain ID.
-        click_state   : 8 ; // Chain state.
-        click_input   : 8 ;
+        flexdp_bitmap  : 16; // Supprort 64 mododules now.
+        flexdp_id      : 16; // Chain ID.
+        flexdp_state   : 8 ; // Chain state.
+        flexdp_input   : 8 ;
     }
 }
 
-metadata click_metadata_t click_metadata;
+metadata flexdp_metadata_t flexdp_metadata;
 
 /********************************************************************************
  *                      Intrinsic Metadata Definition for Tofino                *

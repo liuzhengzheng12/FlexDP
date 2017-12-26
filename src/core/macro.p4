@@ -1,20 +1,20 @@
-#ifndef __CLICK_WRAPPER__
-#define __CLICK_WRAPPER__
+#ifndef __FLEXDP_WRAPPER__
+#define __FLEXDP_WRAPPER__
 
-#define CLICK_BITMAP click_metadata.click_bitmap
-#define CLICK_ID     click_metadata.click_id
-#define CLICK_STATE  click_metadata.click_state
-#define CLICK_INPUT  click_metadata.click_input
+#define FLEXDP_BITMAP flexdp_metadata.flexdp_bitmap
+#define FLEXDP_ID     flexdp_metadata.flexdp_id
+#define FLEXDP_STATE  flexdp_metadata.flexdp_state
+#define FLEXDP_INPUT  flexdp_metadata.flexdp_input
 
-#define SET_CLICK_BITMAP(X) modify_field(CLICK_BITMAP, (X))
-#define SET_CLICK_ID(X) modify_field(CLICK_ID, (X))
-#define SET_CLICK_STATE(X) modify_field(CLICK_STATE, (X))
-#define SET_CLICK_INPUT(X) modify_field(CLICK_INPUT, (X))
+#define SET_FLEXDP_BITMAP(X) modify_field(FLEXDP_BITMAP, (X))
+#define SET_FLEXDP_ID(X) modify_field(FLEXDP_ID, (X))
+#define SET_FLEXDP_STATE(X) modify_field(FLEXDP_STATE, (X))
+#define SET_FLEXDP_INPUT(X) modify_field(FLEXDP_INPUT, (X))
 
 /**
  * Check condition.
  */
-//#define CHECK(X) if(( CLICK_BITMAP & (X)) == 0)
+//#define CHECK(X) if(( FLEXDP_BITMAP & (X)) == 0)
 #define CHECK(X)
 
 

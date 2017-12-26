@@ -1,5 +1,5 @@
-#ifndef __CLICK_DEFINE__
-#define __CLICK_DEFINE__
+#ifndef __FLEXDP_DEFINE__
+#define __FLEXDP_DEFINE__
 
 #define MODULE_MASK_0 (1<<0)
 #define MODULE_MASK_1 (1<<1)

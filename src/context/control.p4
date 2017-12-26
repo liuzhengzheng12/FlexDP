@@ -1,5 +1,5 @@
-#ifndef __CLICK_CONTEXT_CONTROL__
-#define __CLICK_CONTEXT_CONTROL__
+#ifndef __FLEXDP_CONTEXT_CONTROL__
+#define __FLEXDP_CONTEXT_CONTROL__
 
 header_type while_metadata_t {
     fields {
@@ -38,15 +38,15 @@ header_type condition_metadata_t {
 metadata condition_metadata_t condition_metadata; 
 
 action loop(bitmap) {
-    SET_CLICK_STATE(0);
-    SET_CLICK_BITMAP(bitmap);
-    SET_CLICK_INPUT(0);
+    SET_FLEXDP_STATE(0);
+    SET_FLEXDP_BITMAP(bitmap);
+    SET_FLEXDP_INPUT(0);
     resubmit(reserve_fields);
 }
 
 action loop_end(state, bitmap) {
-    SET_CLICK_STATE(state);
-    SET_CLICK_BITMAP(bitmap);
+    SET_FLEXDP_STATE(state);
+    SET_FLEXDP_BITMAP(bitmap);
 }
 
 
